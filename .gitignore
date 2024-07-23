@@ -1,0 +1,8 @@
+.env
+env/
+db.sqlite3
+# Ignore other common files and directories
+.vscode/
+node_modules/
+__pycache__/
+*.pyc

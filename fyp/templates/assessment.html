@@ -1,0 +1,138 @@
+{% extends "nav.html" %}
+
+{% block title %}Assessment Center{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+    .full-page {
+    height: 90vh;
+    background-image: url('{% static "images/5126989.png" %}');
+    background-size: cover;
+    background-position:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.assessment-page {
+    width: 50%;
+    padding: 30px;
+    margin: 100px;
+    justify-self: center;
+    text-align: center;
+    color: #ebebeb;
+    font-size: larger;
+    opacity: 0; /* Initially set opacity to 0 */
+    animation: fadeIn 1.5s ease-in-out forwards;
+    animation-delay: 0.5s; /* Delay the animation */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 3;
+    }
+}
+
+.container_box {
+    padding: 20px;
+}
+
+.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #13223B;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.upload-button:hover {
+    background-color: #fff;
+    color: #13223B;
+}
+
+.image-box {
+    margin: 20px auto 20px auto;
+    width: 300px;
+    height: 300px;
+    background-color: #13223B;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+
+
+.result-section {
+    margin-top: 20px;
+}
+
+
+</style>
+
+<div class="full-page">
+    <div class="assessment-page">
+        <h1>Welcome to ASD  online Assessment</h1>
+        <p>Assess and gain insights into Autism Spectrum Disorder (ASD) through our Online Test. Users can upload a photo for a preliminary evaluation, recognizing that this tool serves an informational purpose and does not replace professional diagnosis. Encouraging awareness and understanding, we provide guidance and recommend consulting healthcare professionals for comprehensive assessments.</p>
+    </div>       
+</div>
+
+
+<div class="container_box">
+    <form method="post" enctype="multipart/form-data" id="upload-form">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="upload-button" value="Upload Photo">
+    </form>
+
+    <div id="image-box" class="image-box">
+    </div>
+
+    <div id="result-section" class="result-section">
+        <!-- Result will be displayed here -->
+    </div>
+</div>
+
+<script>
+    document.getElementById('upload-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        uploadPhoto();
+    });
+
+    function uploadPhoto() {
+        // Implement JavaScript logic to handle file upload
+        var file = document.getElementById('id_photo').files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function() {
+            var image = document.getElementById('image-box');
+            image.style.backgroundImage = "url(" + reader.result + ")";
+        }
+        var formData = new FormData();
+        formData.append('photo', file);
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        fetch('/upload/', {
+            method: 'POST',
+            body: formData
+        })
+       .then(function(response) {
+            return response.json();
+        })
+       .then(function(data) {
+            var resultSection = document.getElementById('result-section');
+            resultSection.innerHTML = data.result;
+        });
+        return false;
+    }
+</script>
+
+{% endblock %}

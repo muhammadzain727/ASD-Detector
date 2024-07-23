@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Login page{% endblock %}
+
+{% block content %}
+<div class="form-group">
+    <form onsubmit="handleSubmit(event)">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-custom btn-block">Login</button>
+    </form>
+    <div id="link" class="text-center">
+        <p>I have no account. <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+</div>
+    <script>
+        function handleSubmit(event){
+            event.preventDefault()
+            console.log(email,password)
+        }
+    </script>
+
+{% endblock %}
+
+<!-- eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxMTI4NDQ3LCJpYXQiOjE3MTg1MzY0NDcsImp0aSI6Ijg3YjkwYTlkMTA1NTQwMTY4OWM0ZjIxNDRlOTA2Yzg2IiwidXNlcl9pZCI6NH0.8cBXNC2fWruAsr5G5ctBIvRtDGdfg7MdZ_uF4OxzMw4 -->

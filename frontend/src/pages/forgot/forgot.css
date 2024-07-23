@@ -1,0 +1,29 @@
+.forgot-container{
+    width: 100vw;
+    height: 100vh;
+   
+}
+
+.forgot-card{
+    background-color: #172947;
+   width: 50%;
+   height: 60%;
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 2rem;
+}
+#forgot-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+#login-btn,#signup-btn{
+  color: white;
+}
+#login-link,#signup-link{
+    color:#4474c7
+
+}

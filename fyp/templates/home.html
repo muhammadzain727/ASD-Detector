@@ -1,0 +1,198 @@
+{% extends "nav.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<style>
+    /* ************************************** */
+    /* Body */
+    /* ************************************** */
+    .container {
+        margin: 0;
+
+    }
+    .half-page {
+        height: 85vh;
+        background-image: url('{% static "images/6533822.png" %}');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .content {
+        width: 30%;
+        padding: 30px;
+        margin-right: 100px;
+        text-align: center;
+        color: #333;
+        opacity: 0;
+        /* Initially set opacity to 0 */
+        animation: fadeIn 1.5s ease-in-out forwards;
+        animation-delay: 0.5s;
+        /* Delay the animation */
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 3;
+        }
+    }
+
+    h1 {
+        font-size: 30px;
+        font-weight: bold;
+        color: aliceblue;
+    }
+
+    p {
+        font-size: 20px;
+        color: aliceblue;
+    }
+
+
+    .half-page-1 {
+        height: 50vh;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content-1 {
+        width: 70%;
+        text-align: center;
+        opacity: 0;
+        /* Initially set opacity to 0 */
+        animation: fadeIn 1.5s ease-in-out forwards;
+        animation-delay: 0.5s;
+        /* Delay the animation */
+    }
+
+    .content-1 p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        color: rgb(6, 10, 13);
+    }
+
+    .assessment-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #13223B;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .assessment-btn:hover {
+        background-color: #1A2E48;
+    }
+
+
+    .half-page-2 {
+        height: 60vh;
+        background-color: #13223B;
+        display: flex;
+    }
+
+    .left-content,
+    .right-content {
+        flex: 1;
+        padding: 50px;
+        color: #fff;
+        opacity: 0;
+        /* Initially set opacity to 0 */
+        animation: fadeIn 1.5s ease-in-out forwards;
+        animation-delay: 0.5s;
+        /* Delay the animation */
+    }
+
+    .left-content {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .right-content {
+        text-align: center;
+    }
+
+    .right-content p {
+
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .about-btn,
+    .article-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #fff;
+        font-weight: bold;
+        color: #13223B;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        justify-content: center;
+        opacity: 0;
+        /* Initially set opacity to 0 */
+        animation: fadeIn 1.5s ease-in-out forwards;
+        animation-delay: 0.5s;
+        /* Delay the animation */
+    }
+
+    .about-btn:hover,
+    .article-btn:hover {
+        background-color: #1A2E48;
+        color: #fff;
+    }
+
+</style>
+
+<div class="half-page">
+    <div class="content">
+        <h1>Welcome to ASD Detector</h1>
+        <p>At ASD Detector, we believe in the strength of community, understanding, and support. Our mission is to
+            create a welcoming space for individuals on the Autism Spectrum and their families, fostering a sense of
+            connection and providing valuable resources.</p>
+    </div>
+</div>
+
+
+<div class="half-page-1">
+    <div class="content-1">
+        <p>We understand the critical importance of early detection and intervention. By focusing on identifying
+            signs of ASD in children, we aim to empower families with the knowledge they need for timely and
+            effective support. Recognizing the uniqueness of every child, our detection approach is tailored to
+            capture the diverse expressions of ASD.</p>
+        <a href="{% url 'assessment' %}" class="assessment-btn">Assessment Center</a>
+    </div>
+</div>
+
+<div class="half-page-2">
+    <div class="left-content">
+        <p>Discover profound insights and personal stories in our 'About' section, where we share the mission,
+            vision, and the compassionate faces behind our commitment to supporting and raising awareness for Autism
+            Spectrum Disorder.</p>
+        <a href="{% url 'about' %}" class="about-btn">About</a>
+    </div>
+    <div class="right-content">
+        <p>Explore expert insights and reviews in our 'Article Desk,' where leading autism specialists share their
+            valuable perspectives, research findings, and recommendations for a deeper understanding of Autism
+            Spectrum Disorder.</p>
+        <a href="{% url 'articles' %}" class="article-btn">Article Desk</a>
+    </div>
+</div>
+
+
+{% endblock %}
